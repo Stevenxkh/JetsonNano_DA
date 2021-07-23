@@ -1,4 +1,4 @@
-import requests, time, csmapi
+import requests, time, csmapi, random
  
 profile = {
     'd_name': None,
@@ -20,7 +20,7 @@ MAC=get_mac_addr()
 thx=None
 def register_device(addr):
     global MAC, profile, timestamp, thx
-    if csmapi.ENDPOINT == None: print 'Server url is empty.'
+    if csmapi.ENDPOINT == None: print ('Server url is empty.')
     if addr != None: MAC = addr
     if profile['d_name'] == None: profile['d_name']= str(int(random.uniform(1, 100)))+'.'+ profile['dm_name']
     for i in profile['df_list']: timestamp[i] = ''
