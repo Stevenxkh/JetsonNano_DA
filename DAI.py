@@ -2,7 +2,7 @@ import config
 import mse
 import RTSP_get_stream as rtsp
 import time
-
+import requests
 
 
 # get IPCam image through rtsp request
@@ -23,11 +23,11 @@ for i in range(0,10):
 
 print("avg mse: " + str(float(N_spray_sum)/90))
 
-'''
-/*TODO*/
-sent signal to IotTalk to open the spray
-print("sending signal to spray...")
-'''
+
+#sent signal to IotTalk to open the spray
+r = requests.put(config.ODF_info['RC_url'], json={"data": [1]})
+print("sending signal to turn on spray...")
+
 
 #wait for spray ready(20sec)
 time.sleep(20)
@@ -35,6 +35,10 @@ time.sleep(20)
 # get IPCam image through rtsp request
 for i in range(10,20):
     rtsp.get_frame(str(i) + ".jpg")
+
+r = requests.put(config.ODF_info['RC_url'], json={"data": [0]})
+print("sending signal to turn off spray...")
+
 
 # compute avg mse between every image(spray)
 Spray_sum = 0
@@ -57,3 +61,8 @@ for i in range(10):
             cmp_sum += m
 
 print("avg mse: " + str(float(cmp_sum)/100))
+
+"""
+/* TODO */
+compute MSE to tell user DEVICE work or not
+"""
