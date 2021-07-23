@@ -1,10 +1,8 @@
 
 
 ODF_info = {
-    'url' : 'http://114.32.238.30:8082/video1s2.mjpg',
-    'path' : 'test_img',
+    'url' : 'http://114.32.238.30:8083/video1s2.mjpg',# Bao4 : http://114.32.238.30:8082/video1s2.mjpg, Bao5 : http://114.32.238.30:8083/video1s2.mjpg
+    'path' : 'test_data_',
     'device' : '',
-    'RC_url' : '',
-    'target_0' : '0.jpg',
-    'target_1' : '1.jpg'
+    'RC_url' : ''
 }
