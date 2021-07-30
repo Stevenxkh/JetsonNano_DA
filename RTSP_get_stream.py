@@ -6,7 +6,10 @@ import config
 def get_frame(f_name):
 
     # get rtsp stream(.mjpg)
-    cap = cv2.VideoCapture(config.ODF_info['url'])
+    try:
+        cap = cv2.VideoCapture(config.ODF_info['url'])
+    except Exception as e:
+        print(e)
     # read the next frame of rtsp stream
     ret, frame = cap.read()
 
