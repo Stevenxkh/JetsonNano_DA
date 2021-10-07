@@ -5,7 +5,7 @@ import time
 import requests
 
 #sent signal to IotTalk to turn on the light
-r = requests.put(config.ODF_info['RC_url_0'], json={"data": [1]})
+#r = requests.put(config.ODF_info['RC_url_0'], json={"data": [1]})
 
 #wait for light ready(20sec)
 print("sending signal to turn on light...")
@@ -31,7 +31,7 @@ print("avg mse: " + str(float(N_spray_sum)/90))
 
 
 #sent signal to IotTalk to open the spray
-r = requests.put(config.ODF_info['RC_url_1'], json={"data": [1]})
+#r = requests.put(config.ODF_info['RC_url_1'], json={"data": [1]})
 print("sending signal to turn on spray...")
 
 
@@ -42,11 +42,11 @@ time.sleep(20)
 for i in range(10,20):
     rtsp.get_frame(str(i) + ".jpg")
 
-r = requests.put(config.ODF_info['RC_url_1'], json={"data": [0]})
+#r = requests.put(config.ODF_info['RC_url_1'], json={"data": [0]})
 print("sending signal to turn off spray and light...")
 
 #sent signal to IotTalk to turn off the light
-r = requests.put(config.ODF_info['RC_url_0'], json={"data": [0]})
+#r = requests.put(config.ODF_info['RC_url_0'], json={"data": [0]})
 
 
 # compute avg mse between every image(spray)

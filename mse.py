@@ -6,15 +6,28 @@ import cv2
 #import config
 
 
-def mse(imageA, imageB):
+def mse(imageA, imageB, threshold):
     '''
     the 'Mean Squared Error' between the two images is
     the sum of the squared difference between the two images;
     '''
+    mse_sum = 0
+    pixel_num = 0
     # NOTE: the two images must have the same dimension
-    err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
-    err /= float(imageA.shape[0] * imageA.shape[1])
 
+    for i in range(imageA.shape[0]):
+        for j in range(imageA.shape[1]):
+            tmp = abs(imageA[i][j] - imageB[i][j])
+            if tmp > threshold :
+                mse_sum += (tmp ** 2)
+                pixel_num += 1
+
+
+    #err = np.sum((imageA - imageB) ** 2) ** 2
+    #print(err)
+    #err /= (imageA.shape[0] * imageA.shape[1])
+    err = mse_sum/pixel_num
+    print(mse_sum, pixel_num)
     '''
     return the MSE, the lower the error, the more "similar" the two images are
     '''
@@ -22,7 +35,7 @@ def mse(imageA, imageB):
 
 def compare_images(imageA, imageB):
     # compute the mean squared error and structural similarity index for the images
-    m = mse(imageA, imageB)
+    m = mse(imageA, imageB ,50)
     # s = ssim(imageA, imageB)
     return m
 
