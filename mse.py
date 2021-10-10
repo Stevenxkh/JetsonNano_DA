@@ -14,28 +14,39 @@ def mse(imageA, imageB, threshold):
     mse_sum = 0
     pixel_num = 0
     # NOTE: the two images must have the same dimension
-
+    #tmp_k = np.zeros((imageA.shape[0], imageA.shape[1]))
+    #print(tmp_k)
     for i in range(imageA.shape[0]):
         for j in range(imageA.shape[1]):
-            tmp = abs(imageA[i][j] - imageB[i][j])
-            if tmp > threshold :
+
+            tmp = int(imageA[i][j]) - int(imageB[i][j])
+            if tmp > threshold:
+                #tmp_k[i][j] = (tmp ** 2)
                 mse_sum += (tmp ** 2)
                 pixel_num += 1
 
 
-    #err = np.sum((imageA - imageB) ** 2) ** 2
-    #print(err)
-    #err /= (imageA.shape[0] * imageA.shape[1])
+
+
+    #err1 = np.sum(tmp_k)
+
     err = mse_sum/pixel_num
-    print(mse_sum, pixel_num)
+    print("cmp: ")
+    #print("A-B\n", cv2.subtract(imageB, imageA), "\n\n", "manual minus\n", tmp_k)
+    #print("\n\n")
+    #print("A\n", imageA, "\n\n", "B\n", imageB)
+    print(err)
+
+
     '''
     return the MSE, the lower the error, the more "similar" the two images are
     '''
+    #return 0
     return err
 
 def compare_images(imageA, imageB):
     # compute the mean squared error and structural similarity index for the images
-    m = mse(imageA, imageB ,50)
+    m = mse(imageA, imageB ,10)
     # s = ssim(imageA, imageB)
     return m
 
