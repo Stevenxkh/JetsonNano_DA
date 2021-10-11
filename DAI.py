@@ -24,7 +24,7 @@ for i in range(0,10):
     for k in range(0,10):
         if(i != k):
             m = mse.init_cmp(path + '/' + str(i) + ".jpg", path + '/' + str(k) + ".jpg")
-            print("mse: " + str(m))
+            #print("mse: " + str(m))
             N_spray_sum += m
 
 print("avg mse: " + str(float(N_spray_sum)/90))
@@ -56,7 +56,7 @@ for i in range(10,20):
     for k in range(10,20):
         if(i != k):
             m = mse.init_cmp(path + '/' + str(i) + ".jpg", path + '/' + str(k) + ".jpg")
-            print("mse: " + str(m))
+            #print("mse: " + str(m))
             Spray_sum += m
 
 print("avg mse: " + str(float(Spray_sum)/90))
@@ -67,12 +67,18 @@ for i in range(10):
     for k in range(10,20):
         if(i != k):
             m = mse.init_cmp(path + '/' + str(i) + ".jpg", path + '/' + str(k) + ".jpg")
-            print("mse: " + str(m))
+            #print("mse: " + str(m))
             cmp_sum += m
 
 print("avg mse: " + str(float(cmp_sum)/100))
+diff_mse = float(cmp_sum)/100
 
 """
 /* TODO */
 compute MSE to tell user DEVICE work or not
 """
+
+if diff_mse > 8000:
+    print("device work correct!")
+else:
+    print("there are some trouble...")
